@@ -1,8 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <unistd.h>    // Necessário para fork()
-#include <sys/wait.h>  // Necessário para wait()
 
 #define MAX_CMD_LENGTH 1024
 #define MAX_ARG_LENGTH 100
@@ -17,19 +15,14 @@ void execute_command(char *cmd) {
         args[i++] = token;
         token = strtok(NULL, " \n");
     }
-    args[i] = NULL; // O último argumento deve ser NULL para execvp
+    args[i] = NULL; // O último argumento deve ser NULL
 
-    // Executa o comando
-    if (fork() == 0) {
-        // No processo filho
-        if (execvp(args[0], args) == -1) {
-            perror("Erro ao executar o comando");
-        }
-        exit(EXIT_FAILURE);
-    } else {
-        // No processo pai, espera o filho terminar
-        wait(NULL);
+    // Simula a execução do comando
+    printf("Comando a ser executado: ");
+    for (int j = 0; j < i; j++) {
+        printf("%s ", args[j]);
     }
+    printf("\n");
 }
 
 int main() {
