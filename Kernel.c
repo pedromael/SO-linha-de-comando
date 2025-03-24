@@ -1,6 +1,5 @@
-// kernel.c
 void main() {
-    // Inicialização e lógica do kernel
-    char *shell = "main"; // Chame seu shell
-    // Adicione a lógica para executar seu shell
+    char *video_memory = (char *) 0xB8000;
+    video_memory[0] = 'K';
+    video_memory[1] = 0x07;
 }
