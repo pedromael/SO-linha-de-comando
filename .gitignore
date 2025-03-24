@@ -1,0 +1,4 @@
+boot.bin
+kernel.o
+main.o
+os-image.bin
